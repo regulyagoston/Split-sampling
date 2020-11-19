@@ -1,2 +1,2 @@
-# SubSampling
-This repository contains sub-sampling techniques for modelling with discretised/interval data.
+# Split-sampling
+This repository contains split sampling techniques for modelling with discretised/interval data.
