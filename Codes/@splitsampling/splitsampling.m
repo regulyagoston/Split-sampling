@@ -1,9 +1,9 @@
-classdef subsampling < handle
+classdef splitsampling < handle
     %% Class for sub-sampling methods   
     properties
-        % Type of creating the sub-sample boundaries
+        % Type of creating the split sample boundaries
         type
-        % Number of sub-samples 
+        % Number of split samples 
         S
         % Number of choice values
         M
@@ -24,7 +24,7 @@ classdef subsampling < handle
     end
     
     properties
-        % Boundary values for each sub-samples
+        % Boundary values for each split samples
         c_s 
     end
     properties %( Access = private )
@@ -36,7 +36,7 @@ classdef subsampling < handle
     properties %( Access = private )
         % Boundary values for working sample
         c_b
-        % Mid values for sub-samples
+        % Mid values for split samples
         z_s
         % Mid values for working sample
         z_b
@@ -47,7 +47,7 @@ classdef subsampling < handle
     
     
     methods
-        function obj = subsampling( type , S , M , a_l , a_u , use_val )
+        function obj = splitsampling( type , S , M , a_l , a_u , use_val )
             if nargin < 6
                 obj.use_val = 'mid';
             end
@@ -62,13 +62,13 @@ classdef subsampling < handle
         %% Type of sub-sampling method
         function set.type( obj , val )
             if ~ischar( val )
-                error( 'Type of sub-sample methods must be a char' );
+                error( 'Type of split sample methods must be a char' );
             elseif ~any( strcmpi( val , { 'simple','magnifying', 'shifting', 'custom' } ) )
-                error( [ 'Type of sub-samples methods must be one of the following: \n' , ...
+                error( [ 'Type of split samples methods must be one of the following: \n' , ...
                         'simple: using only one questionnaire, S must be equal to 1 \n' , ...
                         'magnifying: magnifies into small bin parts within subsamples \n',...
                         'shifting: shifts the boundaries across the support \n',...
-                        'custom: custom set sub-sample boundaries'] )
+                        'custom: custom set split sample boundaries'] )
             else
                 obj.type = val;
             end            
@@ -87,7 +87,7 @@ classdef subsampling < handle
         end
         function set.S( obj , val )
            if ~isnumeric( val ) && numel( val ) ~= 1 && val < 0 && mod( val , 0 ) ~= 1
-               error('Number of sub-samples must be a positive integer')
+               error('Number of split samples must be a positive integer')
            else
                obj.S = val;
            end

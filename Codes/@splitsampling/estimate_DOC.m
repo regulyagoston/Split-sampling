@@ -43,7 +43,7 @@ if l_objY && l_objX
     error('No discretization is done! Simple OLS with continuous variables are estimated!')
 end
 %% For each monte-carlo sample
-parfor mc = 1 : MC
+for mc = 1 : MC
     %% Get the relevant samples
     Ymc = Y( : , mc );
     Xmc = X( : , mcX( mc ) );
