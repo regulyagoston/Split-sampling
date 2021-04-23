@@ -1,4 +1,4 @@
-# Split-sampling
+# Split sampling
 This repository contains split sampling techniques such as magnifying or shifting methods for modelling with discretised continuous variables.  
 
 When a modeller uses a variable which is originally a continuous variable, but observed as an interval data (through a ordered choice window), classical econometric tools does not work. In Chan-Matyas-Reguly (2020) and (2021), we propose methods to handle such variables, when it is on the right hand side (RHS - explanatory variable, see: *[Chan-Matyas-Reguly (2020): Modelling with Discretized Ordered Choice Covariate](https://github.com/regulyagoston/Split-sampling/blob/master/Modelling_with_DOC_covariates.pdf)* ) or on the left hand side (LHS - dependent variable, see: *[Chan-Matyas-Reguly (2021): Modelling with Discretized Continuous Dependent Variable](https://github.com/regulyagoston/Split-sampling/blob/master/Modelling_with_DOC_Dependent_Variable.pdf)*).
