@@ -1,4 +1,4 @@
-This folder contains replication files for Chan-Matyas-Reguly (2021): Modelling with Discretized Ordered Choice Models.
+### This folder contains replication files for Chan-Matyas-Reguly (2021): Modelling with Discretized Ordered Choice Models.
 
 MatLab folder contains the split sampling methods with midpoint regression, while Stata folder contains ordered choice models, interval regression and set-identification method.
 
