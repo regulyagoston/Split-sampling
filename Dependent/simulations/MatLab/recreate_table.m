@@ -37,7 +37,7 @@ N  = 10000;
 % Number of Monte Carlo repetition
 MC = 1000;
 % Random number generator
-rngNum = 777;
+rngNum = 100;
 
 % Lower and upper bound for Y
 a_l_Y = -2;
