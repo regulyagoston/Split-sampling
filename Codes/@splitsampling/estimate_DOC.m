@@ -1,6 +1,11 @@
 %% Estimate MC with DTO observations using fix N, S, M, and MC
 %
 % Case: Known domain
+%
+% Output:
+%   b_0  - estimated parameter for beta (MC x N)
+%   nObs - number of effective observations (MC x N)
+%   nUq  - number of unique values (MC x N)
 
 function [ b_0 , nObs , nUq ] = estimate_DOC( Y , X , N , S , objY , objX , ordered )
 
@@ -13,6 +18,7 @@ if MC_X > 1
 else
     mcX = ones( 1 , MC );
 end
+
 % Number of N
 nN = numel( N );
 % Check for object and update
@@ -21,6 +27,7 @@ if ~l_objY
     objY.S = S;
     set_boundaries_midpoints( objY );
 end
+
 l_objX = isempty( objX );
 if ~l_objX
     objX.S = S;
@@ -40,8 +47,10 @@ e_rhs = l_objY & ~l_objX;
 % Estimation for RHS and LHS only
 e_dhs = ~l_objY & ~l_objX;
 if l_objY && l_objX
-    error('No discretization is done! Simple OLS with continuous variables are estimated!')
+    error('No discretization is implemented!')
 end
+
+
 %% For each monte-carlo sample
 for mc = 1 : MC
     %% Get the relevant samples
@@ -58,12 +67,13 @@ for mc = 1 : MC
     if ordered( 1 )
         Yd = ordinal( Yd );
     end
+    
     %% Estimation for each sample-size
     for n = 1 : nN
         
         % Decide estimation procedure
         if e_lhs && ~ordered( 1 )
-            %% Sample for LHS
+            %% Estimate only LHS
             X_n  = Xmc( 1 : N( n ) , : );
             Yd_n = Yd( 1 : N( n ) , : );
             DTO_n = ID_DTO_Y( 1 : N( n ) , : );
@@ -91,6 +101,7 @@ for mc = 1 : MC
                 nObs( mc , n ) = 0;
             end
         elseif e_rhs
+            %% Estimate RHS only
             % Find the relevant sample
             Y_n  = Ymc( 1 : N( n ) , : );
             Xs_n = Xs( 1 : N( n ) , : );
