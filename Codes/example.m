@@ -13,7 +13,7 @@ S  = 1;
 % Number of observations
 N  = 10000;
 % Number of Monte-Carlo repetitions
-MC = 1;
+MC = 100;
 
 %% Creating distributions
 % Distrubance term epsilon
@@ -34,13 +34,12 @@ use_val = 'mid';
 a_l = distE.a_l + distX.a_l;
 a_u = distE.a_u + distX.a_u;
 % Creating magnifying method for split sampling
-obj_magn = splitsampling( 'magnifying' , S , M , a_l , a_u , use_val );
-% Use only DTOs
-obj_magn.onlyDTO = true;
+obj_shift = splitsampling( 'shifting' , S , M , a_l , a_u , use_val );
 
 %% Run method
-b_mc = est_multi_NS( N , S , MC , obj_magn , [] , distX , distE , [ false , false ] , a_l , a_u );
+b_mc = est_multi_NS( N , S , MC , obj_shift , [] , distX , distE , [ false , false ] , a_l , a_u, true );
 
+%%
 sprintf( horzcat( 'Average bias:' , num2str( 0.5 - mean( b_mc ) ) , ' \n' ,...
-                'Std of the MC estimates: ' , num2str( std( b_mc ) ) ) );
+                'Std of the MC estimates: ' , num2str( std( b_mc ) ) ) )
 

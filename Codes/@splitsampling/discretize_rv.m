@@ -2,11 +2,11 @@
 %
 % Input:
 %   obj - subsampling object
-%   X   - Nx1 vector
+%   X   - NxK vector
 %
 % Output
-%   X_s  - S x N_s matrix of discretized values, where N_s = N/S
-%   id_s - S x N_s matrix of identification values for sub-sample S
+%   X_s  - S x N_s x K matrix of discretized values, where N_s = N/S
+%   id_s - S x N_s x K matrix of identification values for sub-sample S
 
 function [ X_s , id_s ] = discretize_rv( obj , X )
 

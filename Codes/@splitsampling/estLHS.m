@@ -3,7 +3,10 @@
 function [ b , nObs , nUq ] = estLHS( objY , X_n , Yd_n , DTO_n )
 
 % Use only DTO for estimation
-if objY.onlyDTO
+if objY.S == 1
+    Y_ws_all = Yd_n;
+    X_n      = X_n;
+elseif objY.onlyDTO
     Y_ws_all = Yd_n( DTO_n );
     X_n      = X_n(  DTO_n );
 else

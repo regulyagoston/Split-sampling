@@ -7,10 +7,26 @@ switch obj.type
         if obj.S ~= 1
             error('Using simple questionnaire requires to set S=1')
         end
-        % Working sample's boundary points
-        c_b = linspace( obj.a_l ,obj.a_u , obj.M + 1 );
+        %if obj.K == 1
+            % Working sample's boundary points
+            c_b = linspace( obj.a_l ,obj.a_u , obj.M + 1 );
+        %elseif obj.K == 2
+            % Working sample's boundary points with K == 2
+        %    c_b = NaN(obj.M+1,obj.M+1,obj.K);
+        %    for k = 1 : obj.K
+        %        c_b_k = linspace( obj.a_l(k) ,obj.a_u(k) , obj.M + 1 );
+        %        if k == 1
+        %            c_b(:,:,k) = repmat( c_b_k', [ 1, obj.M+1 ] );
+        %        elseif k == 2
+        %            c_b(:,:,k) = repmat( c_b_k, [ obj.M+1, 1 ] );
+        %        end                
+        %    end
+        %else
+        %    error('No boundary setup for K > 2!')
+        %end
         % Sub-sample's boundary points
         c_s = c_b;
+        
         
     case 'magnifying'
         %% First create the working sample's boundary points
@@ -70,12 +86,18 @@ end
 % Working-sample
 switch obj.use_val
     case 'mid'
-        obj.z_b = ( c_b( 1 : end - 1 ) + c_b( 2 : end ) ) ./ 2;
-        % Sub-sample
-        obj.z_s = NaN( obj.S , obj.M );
-        for s = 1 : obj.S
-            obj.z_s( s , : ) = ( c_s( s , 1 : end - 1 ) + c_s( s , 2 : end ) ) ./ 2;
-        end
+        %if obj.K == 1
+            obj.z_b = ( c_b( 1 : end - 1 ) + c_b( 2 : end ) ) ./ 2;
+            % Sub-sample
+            obj.z_s = NaN( obj.S , obj.M );
+            for s = 1 : obj.S
+                obj.z_s( s , : ) = ( c_s( s , 1 : end - 1 ) + c_s( s , 2 : end ) ) ./ 2;
+            end
+        %elseif obj.K == 2
+        %    obj.z_b = 1;
+        %else 
+        %    error('Not implemented!')
+        %end
     case 'low'
         obj.z_b = c_b( 1 : end - 1 );
         % Sub-sample

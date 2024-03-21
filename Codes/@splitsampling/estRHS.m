@@ -2,7 +2,10 @@
 
 function [ b , nObs , nUq ] = estRHS( objX , Y_n , Xs_n , Xd_n , Id_n , DTO_n )
 
-if objX.onlyDTO
+if objX.S == 1
+    X_ws_all = Xs_n;
+    Id_s = Id_n;
+elseif objX.onlyDTO
     X_ws_all = Xd_n( DTO_n );
     Y_n      = Y_n(  DTO_n );
     Id_s     = Id_n( DTO_n );
