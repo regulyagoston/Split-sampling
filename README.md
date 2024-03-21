@@ -12,7 +12,7 @@ We deal with econometric models in which the dependent variable, some explanator
 
 ## Replications
 
-To replicate our results, one needs to add to path the folder of [`codes/estimation`](codes/estimation) and [`codes/@splitsampling`](codes/@splitsampling). The latter is automatic in MatLab.
+To replicate our results, one needs to add to path the folder of [`codes/estimation`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/estimation) and [`codes/@splitsampling`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/@splitsampling). The latter is automatic in MatLab.
 
 - [`codes/simulations/sim_results_RHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/sim_results_RHS.m) replicates: Table 1 and Tables A1-A3.
 - [`codes/simulations/convergence_RHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/convergence_RHS.m) replicates: Table A4.
