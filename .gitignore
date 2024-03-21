@@ -1,4 +1,5 @@
 
 *.DS_Store
 *.m~
+*.asv
 /not_in_git
