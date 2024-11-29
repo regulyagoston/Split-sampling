@@ -1,6 +1,6 @@
 # Split sampling
 
-This repository contains replication codes for simulations and empirical results from [Chan, Mátyás, Reguly (2024): Modelling with Discretized Variables]() and its [online supplement](). 
+This repository contains replication codes for simulations and empirical results from [Chan, Mátyás, Reguly (2024): Modelling with Sensitive Variables]() and its [online supplement](). 
 
 Codes have been run with MatLab version 2023b on a MacBook with OS Version 14.2.1 and an Apple M1 Max chip. The simulations are parallelized; we used 10 workers. Results may slightly change if different numbers of workers are used due to randomization. One can get rid of parallelization by changing the `parfor` loop to `for` in [codes/@splitsampling/estimate_DOC.m](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/@splitsampling/estimate_DOC.m), line 60. In case of discretization happens with the outcome variable, we have used StataMP 13 and run the referred codes on the same laptop. The codes for the empirical application are shared; however, the data from the Australian Tax Office (ATO) cannot be made public unless one applies to get the data from the ATO.
 
