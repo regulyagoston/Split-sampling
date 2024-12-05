@@ -5,8 +5,9 @@
 %
 % Output:
 %   eps - measure of differential privacy >0
+%   delta -- probability of data privacy leakage
 
-function [ eps ] = epsilon_differential( obj , Xs, rnd_sample )
+function [ eps, delta ] = epsilon_differential( obj , Xs, rnd_sample )
 
 if ( rnd_sample )
     % Take a random 1000 sample
@@ -54,6 +55,7 @@ end
 %% Final value
 varesp_dif = repmat( z_in_Cm, N, 1 ) ./ z_in_Cm_p;
 
+delta = sum( z_in_Cm_p == 0) / ( N * obj.M * S );
 eps = max(varesp_dif( isfinite(varesp_dif) ) );
 
 end

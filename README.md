@@ -1,6 +1,6 @@
 # Split sampling
 
-This repository contains replication codes for simulations and empirical results from [Chan, Mátyás, Reguly (2024): Modelling with Sensitive Variables]() and its [online supplement](). 
+This repository contains replication codes for simulations and empirical results from Chan, Mátyás, Reguly (2024): Modelling with Sensitive Variables and its online supplement.
 
 Codes have been run with MatLab version 2023b on a MacBook with OS Version 14.2.1 and an Apple M1 Max chip. The simulations are parallelized; we used 10 workers. Results may slightly change if different numbers of workers are used due to randomization. One can get rid of parallelization by changing the `parfor` loop to `for` in [codes/@splitsampling/estimate_DOC.m](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/@splitsampling/estimate_DOC.m), line 60. In case of discretization happens with the outcome variable, we have used StataMP 13 and run the referred codes on the same laptop. The codes for the empirical application are shared; however, the data from the Australian Tax Office (ATO) cannot be made public unless one applies to get the data from the ATO.
 
@@ -14,13 +14,16 @@ We deal with econometric models in which the dependent variable, some explanator
 
 To replicate our results, one needs to add to path the folder of [`codes/estimations`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/estimations) and [`codes/@splitsampling`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/@splitsampling). The latter is automatic in MatLab.
 
-- [`codes/simulations/sim_results_RHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/sim_results_RHS.m) replicates: Table 1 and Tables A1-A3.
-- [`codes/simulations/convergence_RHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/convergence_RHS.m) replicates: Table A4.
-- [`codes/simulations/sim_results_LHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/sim_results_LHS.m) replicates mid-point regressions and shifting for Table 2 and Tables A5-A7.
-- [`codes/simulations/convergence_LHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/convergence_LHS.m) replicates mid-point regressions and shifting for Tables A8.
-- [`codes/simulations/LHS_stata/save_results.do`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/LHS_stata/save_results.do) replicates Set identification, Ordered probit, Ordered logit and Interval regressions for Table 2 and Tables A5-A8 and saves to an excel. One need to change the path in the code. To be able to run the stata script one needs to
+- [`codes/simulations/sim_results_RHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/sim_results_RHS.m) replicates: Table 1 RHS rows and further evidences for the right-hand-side case in the online supplement.
+- [`codes/simulations/convergence_RHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/convergence_RHS.m) replicates convergence results from the online supplement for the right hand side.
+- [`codes/simulations/sim_results_LHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/sim_results_LHS.m) replicates mid-point regressions and shifting for Table 1 and further tables from the online appendix.
+- [`codes/simulations/convergence_LHS.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/convergence_LHS.m) replicates convergence results from the online supplement for the left hand side.
+- [`codes/simulations/LHS_stata/save_results.do`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/LHS_stata/save_results.do) replicates Set identification, Ordered probit, Ordered logit and Interval regressions for Table 2 and further results from the online supplement and saves to an excel. One need to change the path in the code. To be able to run the stata script one needs to
   - add [`codes/simulations/LHS_stata/simul_overallLHS.do`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/LHS_stata/simul_overallLHS.do) to path.
   - inport the [STATA Software for Best Linear Prediction with Interval Outcome Data](https://molinari.economics.cornell.edu/programs/Stata_SetBLP.zip) provided and documented by Arie Beresteanu, Francesca Molinari and Darcy Steeg Morris (2010): "Asymptotics for Partially Identified Models in STATA
-- [`codes/simulations/sim_results_both.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/sim_results_both.m) replicates Table 3 and Tables A9-A11.
-- [`codes/simulations/convergence_both.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/congergence_both.m) replicates: Table A12.
+- [`codes/simulations/sim_results_both.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/sim_results_both.m) replicates Table 1 when discretization happens on both sides and further evidences from online supplement.
+- [`codes/simulations/convergence_both.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/simulations/congergence_both.m) replicates convergence results from the online supplement when both sides contains sensitive variables.
+- [`codes/empirical_application/model_results.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/empirical_application/model_results.m) replicates: Table 2 for true parameters, mid-point regression and shifting method
+- [`codes/empirical_application/differential_privacy_ATO.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/empirical_application/differential_privacy_ATO.m) replicates: Table 2 for the differential privacy using the package of 'diffprivlib' from python.
+- [`codes/empirical_application/descriptives_stat.m`](https://github.com/regulyagoston/Split-sampling/blob/master/Codes/empirical_application/descriptives_stat.m) replicates the descriptive table for ATO analysis from the online supllement.
     

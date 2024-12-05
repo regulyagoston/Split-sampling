@@ -34,20 +34,10 @@ a_u = 225000;
 y_o = log( y );
 [ b_true , bSE_true ] = lscov( covariates , y_o );
 
-%% HILDA discretization
-obj_hilda   = splitsampling( 'simple' , 1 , 12 , a_l , a_u , use_val );
-bounds = [ 1 , 10000 , 20000 , 30000 , 40000 , 50000 , 60000 , 80000 , 100000 , 125000 , 150000 , 200000 , a_u ];
-obj_hilda.c_s = bounds;
-obj_hilda.c_b = bounds;
-set_boundaries_midpoints( obj_hilda );
-dv_hilda = disc_procedure( obj_hilda , y );
-% Simple parameter estimates on discretized log wage
-ln_dv_hilda = log( dv_hilda );
-[ b_hilda , bSE_hilda ] = lscov( covariates , ln_dv_hilda );
-
 %% Mid-pont regressions
 b_mpr = NaN(numel(M),1);
 bSE_mpr = NaN(numel(M),1);
+eps_privacy_mid = NaN(numel(M),1);
 for i = 1:numel(M)
     % Discretize the outcome
     obj_midpoint   = splitsampling( 'simple' , 1 , M(i) , a_l , a_u , use_val );
@@ -58,12 +48,15 @@ for i = 1:numel(M)
     [ b_mpr_i , bSE_mpr_i ] = lscov( covariates , ln_dv_mpr );
     b_mpr(i) = b_mpr_i( K );
     bSE_mpr(i) = bSE_mpr_i( K );
+    [ eps_i ] = epsilon_differential( obj_midpoint , dv_mpr, FALSE );
+    eps_privacy_mid(i) = eps_i
 end
 
 
 %% Shifting
 b_sft = NaN(numel(M),1);
 bSE_sft = NaN(numel(M),1);
+eps_privacy_shift = NaN(numel(M),1);
 for i = 1:numel(M)
     obj_shifting             = splitsampling( 'shifting' , S , M(i) , a_l , a_u , use_val );
     obj_shifting.onlyDTO     = false;
@@ -80,16 +73,19 @@ for i = 1:numel(M)
     [ b_sh , bSE_sh ] = lscov( covariates, t_oc_shift );
     b_sft( i ) = b_sh( K );
     bSE_sft( i ) = bSE_sh( K );
+    [ eps_i ] = epsilon_differential( obj_shifting , Ys_s, FALSE );
+    eps_privacy_shift(i) = eps_i
 end
 
 
 
 %% Report parameter estimates on gender
 disp( horzcat( 'Directly observed: '      , num2str( b_true( K ) ) , ' (' , num2str( bSE_true( K ) ) , ')' ) );
-disp( horzcat( 'HILDA: '  , num2str( b_hilda( K ) )  , ' (' , num2str( bSE_hilda( K ) )  , ')' ) );
 disp( horzcat( 'Number of intervals ', num2str( M ) ) );
 disp( horzcat( 'Mid-point regression: ' , num2str( b_mpr' ) ) );
 disp( horzcat( '  ' , num2str( bSE_mpr' ) ) );
+disp( horzcat( 'eps-privacy: ' , num2str( eps_privacy_mid' ) ) );
 disp( horzcat( 'Shifting: ' , num2str( b_sft' ) ) );
 disp( horzcat( '  ' , num2str( bSE_sft' ) ) );
+disp( horzcat( 'eps-privacy: ' , num2str( eps_privacy_shift' ) ) );
 disp( horzcat('N: ', num2str(size(y,1))))

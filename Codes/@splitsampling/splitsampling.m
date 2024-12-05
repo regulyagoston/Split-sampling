@@ -174,7 +174,7 @@ classdef splitsampling < handle
         [ Xs , Xd , IDs , ID_DTO ] = disc_procedure( obj , X );
         X_ws = conditional_working_sample( obj, X_s , artX , id_s , double_cond );
         [Y_ws_all, X_ws_all] = conditional_working_sample_joint( objY , Ys_n , Yd_n , Id_nY, objX , Xs_n , Xd_n , Id_nX );
-        
+        [ eps ] = epsilon_differential( obj , Xs, rnd_sample );
         %% Estimations
         [ b , nObs , nUq ] = estLHS( obj , X_n , Yd_n , DTO_n );
         [ b , nObs , nUq ] = estRHS( objX , Y_n , Xs_n , Xd_n , Id_n , DTO_n );
