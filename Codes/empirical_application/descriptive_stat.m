@@ -1,4 +1,4 @@
-%% Descriptive statistics -- Replicate Table A.13
+%% Descriptive statistics -- Replicate Table S.13
 clear all
 clc
 % Unfortunately original data is confidential

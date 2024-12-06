@@ -1,5 +1,8 @@
 %% Compare different discretization schemes for Australian gender wage gap
-% Reproduces Table 4
+% Reproduces Table 2
+% 
+% It runs quickly if there is no differential privacy measure asked
+%      otherwise it takes a while as it checks for  all potential value.
 
 %% Load data
 %clear all
@@ -48,8 +51,8 @@ for i = 1:numel(M)
     [ b_mpr_i , bSE_mpr_i ] = lscov( covariates , ln_dv_mpr );
     b_mpr(i) = b_mpr_i( K );
     bSE_mpr(i) = bSE_mpr_i( K );
-    [ eps_i ] = epsilon_differential( obj_midpoint , dv_mpr, FALSE );
-    eps_privacy_mid(i) = eps_i
+    [ eps_i ] = epsilon_differential( obj_midpoint , dv_mpr, false );
+    eps_privacy_mid(i) = eps_i;
 end
 
 
@@ -73,8 +76,8 @@ for i = 1:numel(M)
     [ b_sh , bSE_sh ] = lscov( covariates, t_oc_shift );
     b_sft( i ) = b_sh( K );
     bSE_sft( i ) = bSE_sh( K );
-    [ eps_i ] = epsilon_differential( obj_shifting , Ys_s, FALSE );
-    eps_privacy_shift(i) = eps_i
+    [ eps_i ] = epsilon_differential( obj_shifting , Ys_s, false );
+    eps_privacy_shift(i) = eps_i;
 end
 
 

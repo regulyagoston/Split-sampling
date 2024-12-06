@@ -1,6 +1,6 @@
 %% Convergene results for both
 %
-% Table A.12 form online supplement - Midpoint and Shifting
+% Table S.12 form online supplement - Midpoint and Shifting
 
 
 

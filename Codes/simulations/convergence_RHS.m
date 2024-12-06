@@ -1,6 +1,6 @@
 %% Convergene results for RHS
 %
-% Table A.4 form online supplement
+% Table S.4 form online supplement
 
 
 clear all

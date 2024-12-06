@@ -2,9 +2,9 @@
 %
 % Reproduces tables:
 %   Main paper:
-%       Table 3.
+%       Table 1. -- results for discretization on both sides
 %   Online supplement:
-%       Table A9-A11
+%       Table S9-S11
 
 
 clear all

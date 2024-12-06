@@ -2,9 +2,9 @@
 %
 % Reproduces tables:
 %   Main paper:
-%       Table 2.
+%       Table 1. for discretization happens on the left-hand side
 %   Online supplement:
-%       Table A5-A7
+%       Table S5-S7
 
 
 clear all

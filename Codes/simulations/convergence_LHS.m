@@ -1,6 +1,6 @@
 %% Convergene results for RHS
 %
-% Table A.8 form online supplement - Midpoint and Shifting
+% Table S.8 form online supplement - Midpoint and Shifting
 
 clear all
 clc
