@@ -56,6 +56,6 @@ end
 varesp_dif = repmat( z_in_Cm, N, 1 ) ./ z_in_Cm_p;
 
 delta = sum( z_in_Cm_p == 0) / ( N * obj.M * S );
-eps = max(varesp_dif( isfinite(varesp_dif) ) );
+eps = log( max(varesp_dif( isfinite(varesp_dif) ) ) );
 
 end
